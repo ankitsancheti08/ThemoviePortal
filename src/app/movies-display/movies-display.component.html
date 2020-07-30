@@ -1,0 +1,53 @@
+<div class="container">
+  <br>
+  <section *ngIf="loading">
+    <br>
+    <p>Movies will load shortly.</p>
+  </section>
+  <section *ngIf="!loading">
+    <table class="table">
+      <thead>
+        <tr>
+          <th></th>
+          <th>Title</th>
+          <th>Director</th>
+          <th>Rating</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let movie of movies">
+          <td><img src="../../assets/Movie-Poster.jpg" alt="{{movie.title}}" width="50px"></td>
+          <td class="title"><a id="display-movie" (click)="selectMovie(movie)">{{movie.title}}</a></td>
+          <td>{{movie.director}}</td>
+          <td>{{movie.rt_score}}</td>
+
+        </tr>
+      </tbody>
+    </table>
+  </section>
+  <div class="modal fade " id="display-movie-modal" tabindex="-1" role="dialog" aria-labelledby="displayMovieModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="displayMovieModalLabel">{{selectedMovie.title}} || {{selectedMovie.release_date}}
+          </h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <ul>
+            <li>Director : {{selectedMovie.director}}</li>
+            <li>Producer : {{selectedMovie.producer}}</li>
+            <li>Rating : {{selectedMovie.rt_score}}</li>
+          </ul>
+          <hr>
+          <p><b>Summary:</b></p>
+          <p>{{selectedMovie.description}}</p>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
